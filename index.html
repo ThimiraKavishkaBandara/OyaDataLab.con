@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Oya Data Labs - freelance websites, AI chatbots, workflow automation, cloud data pipelines, dashboards, and tech consulting.">
+<style>
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+:root{color-scheme:light dark}
+</style>
+<title>Oya Data Labs</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --ground:#FCFCFD;
+    --surface:#FFFFFF;
+    --surface-2:#F4F6F9;
+    --ink:#16202B;
+    --ink-soft:#33414F;
+    --muted:#58657A;
+    --hairline:#E4E9EF;
+    --hairline-strong:#D2DAE3;
+    --accent:#0C6E88;
+    --accent-strong:#084F63;
+    --accent-wash:#E6F1F4;
+    --gold:#B57A2E;
+    --shadow:0 1px 2px rgba(16,32,43,.04), 0 12px 30px -18px rgba(16,32,43,.22);
+    --shadow-soft:0 1px 2px rgba(16,32,43,.04);
+    --sans:"IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --display:"Sora", "IBM Plex Sans", system-ui, sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E141B;
+      --surface:#151D26;
+      --surface-2:#1B2530;
+      --ink:#EAF0F6;
+      --ink-soft:#C6D0DB;
+      --muted:#93A0B1;
+      --hairline:#28323D;
+      --hairline-strong:#354350;
+      --accent:#45B7CB;
+      --accent-strong:#7CD3E2;
+      --accent-wash:#12303A;
+      --gold:#D9A65A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px -22px rgba(0,0,0,.7);
+      --shadow-soft:0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E141B;
+    --surface:#151D26;
+    --surface-2:#1B2530;
+    --ink:#EAF0F6;
+    --ink-soft:#C6D0DB;
+    --muted:#93A0B1;
+    --hairline:#28323D;
+    --hairline-strong:#354350;
+    --accent:#45B7CB;
+    --accent-strong:#7CD3E2;
+    --accent-wash:#12303A;
+    --gold:#D9A65A;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px -22px rgba(0,0,0,.7);
+    --shadow-soft:0 1px 2px rgba(0,0,0,.3);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+  h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spacing:-.02em;text-wrap:balance;margin:0}
+  p{margin:0}
+  a{color:inherit}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+
+  /* ---------- header ---------- */
+  header.top{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+    background:color-mix(in srgb, var(--ground) 86%, transparent);
+    backdrop-filter:saturate(1.4) blur(10px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .nav{display:flex;align-items:center;gap:20px;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.02em;text-decoration:none}
+  .brand .mark{width:26px;height:26px;flex:0 0 auto}
+  .nav .links{display:flex;gap:26px;margin-left:auto}
+  .nav .links a{font-size:14.5px;color:var(--muted);text-decoration:none;font-weight:500}
+  .nav .links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;
+    font-size:14.5px;text-decoration:none;border-radius:9px;padding:10px 16px;cursor:pointer;
+    border:1px solid transparent;transition:transform .12s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-strong);transform:translateY(-1px)}
+  :root[data-theme="dark"] .btn-primary{color:#08222a}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn-primary{color:#08222a}}
+  .btn-ghost{background:transparent;border-color:var(--hairline-strong);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .nav .btn{margin-left:4px}
+  @media (max-width:720px){.nav .links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding-block:64px 40px;background:radial-gradient(760px 380px at 88% -8%, var(--accent-wash), transparent 68%)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center}
+  .hero h1{font-size:clamp(34px,5vw,54px);margin-top:16px}
+  .hero .lede{font-size:clamp(16px,1.6vw,19px);color:var(--ink-soft);margin-top:20px;max-width:33em}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .hero .sub{margin-top:18px;font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .hero{padding-block:44px 28px}
+    .diagram-card{order:-1}
+  }
+
+  .diagram-card{
+    background:var(--surface);border:1px solid var(--hairline);border-radius:16px;
+    padding:22px;box-shadow:var(--shadow);
+  }
+  .diagram-card .cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .diagram svg{width:100%;height:auto;display:block}
+  .diagram .box{fill:var(--surface-2);stroke:var(--hairline-strong);stroke-width:1}
+  .diagram .core{fill:var(--accent-wash);stroke:var(--accent);stroke-width:1}
+  .diagram .lbl{fill:var(--ink-soft);font-family:var(--mono);font-size:10.5px}
+  .diagram .lbl-core{fill:var(--accent-strong);font-family:var(--display);font-size:12px;font-weight:600}
+  .diagram .lbl-core-sub{fill:var(--accent);font-family:var(--mono);font-size:9px}
+  .diagram .cap-txt{fill:var(--muted);font-family:var(--mono);font-size:9.5px}
+  .diagram .flow-in{stroke:var(--muted);stroke-width:1.6;fill:none}
+  .diagram .flow-out{stroke:var(--accent);stroke-width:1.8;fill:none}
+  .diagram .arw-in{fill:var(--muted)}
+  .diagram .arw-out{fill:var(--accent)}
+
+  /* ---------- capability strip ---------- */
+  .strip{border-block:1px solid var(--hairline);background:var(--surface-2)}
+  .strip .wrap{display:flex;flex-wrap:wrap;gap:10px 14px;padding-block:18px;align-items:center}
+  .chip{
+    font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);
+    background:var(--surface);border:1px solid var(--hairline);border-radius:999px;padding:6px 13px;
+  }
+  .chip b{color:var(--accent);font-weight:500}
+
+  /* ---------- sections ---------- */
+  section{padding-block:66px}
+  .sec-head{max-width:44em}
+  .sec-head h2{font-size:clamp(25px,3vw,34px);margin-top:12px}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:16.5px}
+
+  /* services */
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+  @media (max-width:720px){.svc-grid{grid-template-columns:1fr}}
+  .svc{
+    background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:26px;
+    box-shadow:var(--shadow-soft);transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  .svc:hover{border-color:var(--hairline-strong);box-shadow:var(--shadow);transform:translateY(-2px)}
+  .svc .ic{width:38px;height:38px;border-radius:10px;background:var(--accent-wash);color:var(--accent);
+    display:grid;place-items:center;margin-bottom:16px}
+  .svc .ic svg{width:20px;height:20px}
+  .svc h3{font-size:19px}
+  .svc p{color:var(--muted);margin-top:9px;font-size:14.8px}
+  .flow{display:flex;align-items:stretch;gap:6px;margin-top:18px}
+  .flow .node{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:var(--surface-2);border:1px solid var(--hairline);border-radius:10px;padding:12px 5px}
+  .flow .node > svg{width:21px;height:21px;color:var(--accent);flex:0 0 auto}
+  .flow .node span{font-family:var(--mono);font-size:10px;line-height:1.25;color:var(--ink-soft)}
+  .flow .arrow{display:flex;align-items:center;color:var(--muted);flex:0 0 auto}
+  .flow .arrow svg{width:13px;height:13px}
+
+  /* work */
+  #work{background:var(--surface-2);border-block:1px solid var(--hairline)}
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+  @media (max-width:880px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.work-grid{grid-template-columns:1fr}}
+  .case{
+    background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:22px;
+    display:flex;flex-direction:column;min-height:100%;box-shadow:var(--shadow-soft);
+  }
+  .case .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  .case h3{font-size:17.5px;letter-spacing:-.01em}
+  .case p{color:var(--muted);font-size:14.3px;margin-top:9px}
+  .case .stack{margin-top:auto;padding-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+  .case.wide{grid-column:span 2}
+  @media (max-width:560px){.case.wide{grid-column:span 1}}
+  a.case{text-decoration:none;color:inherit;transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease}
+  a.case:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
+  .case.live{border-color:var(--hairline-strong)}
+  .case .tag .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#22b46a;margin-right:7px;vertical-align:middle}
+  .case .visit{margin-top:auto;padding-top:16px;font-family:var(--mono);font-size:12.5px;color:var(--accent);font-weight:500;display:inline-flex;gap:5px;align-items:center}
+  a.case:hover .visit{text-decoration:underline}
+  .case .preview{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;margin-bottom:16px;border:1px solid var(--hairline)}
+  .case .preview svg{width:100%;height:100%;display:block}
+
+  /* process */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;counter-reset:step}
+  @media (max-width:720px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;padding-top:14px;border-top:2px solid var(--accent)}
+  .step .n{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .step h3{font-size:18px;margin-top:8px}
+  .step p{color:var(--muted);font-size:14.5px;margin-top:8px}
+
+  /* about */
+  .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:start}
+  @media (max-width:820px){.about{grid-template-columns:1fr;gap:24px}}
+  .about p{color:var(--ink-soft);font-size:16px;margin-top:14px}
+  .about p + p{margin-top:14px}
+  .about .note{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:20px;border-left:2px solid var(--hairline-strong);padding-left:14px}
+
+  /* contact */
+  #contact{background:var(--surface-2);border-top:1px solid var(--hairline)}
+  .contact-card{
+    background:var(--surface);border:1px solid var(--hairline);border-radius:18px;
+    padding:clamp(28px,4vw,52px);box-shadow:var(--shadow);text-align:center;
+  }
+  .contact-card h2{font-size:clamp(26px,3.4vw,38px)}
+  .contact-card p{color:var(--muted);margin-top:14px;max-width:38em;margin-inline:auto;font-size:16.5px}
+  .contact-card .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .mailline{font-family:var(--mono);font-size:14px;color:var(--accent);margin-top:20px;word-break:break-all}
+
+  /* footer */
+  footer.site{border-top:1px solid var(--hairline);color:var(--muted)}
+  footer.site .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;padding-block:26px;font-size:13.5px}
+  footer.site .brand{font-size:15px;color:var(--ink)}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Oya Data Labs home">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" rx="8" fill="var(--accent-wash)"/>
+        <path d="M8 11h16M8 16h11M8 21h6" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="23.5" cy="19.5" r="3" fill="var(--accent)"/>
+      </svg>
+      Oya Data Labs
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Start a project</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Data &middot; automation &middot; web &middot; tech consulting</span>
+        <h1>The manual work in your business, engineered away.</h1>
+        <p class="lede">We design and build the tools that move a business forward &mdash; modern websites, workflow and spreadsheet automation, AI chatbots, cloud data pipelines, and dashboards &mdash; plus plain-language tech guidance to help you decide what to build in the first place.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Book a free scoping call</a>
+          <a class="btn btn-ghost" href="#work">See recent work</a>
+        </div>
+        <p class="sub">Websites · AI chatbots · automation · cloud data pipelines · dashboards · tech consulting</p>
+      </div>
+
+      <div class="diagram-card">
+        <div class="cap">How a build comes together</div>
+        <div class="diagram">
+          <svg viewBox="0 0 340 250" role="img" aria-label="Diagram: raw sources flow through an automated pipeline into an AI assistant, dashboards and reports">
+            <defs>
+              <marker id="arwIn" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0 0 L7 4 L0 8 z" class="arw-in"/>
+              </marker>
+              <marker id="arwOut" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0 0 L7 4 L0 8 z" class="arw-out"/>
+              </marker>
+            </defs>
+            <!-- sources -->
+            <rect x="6" y="20" width="96" height="30" rx="7" class="box"/>
+            <text x="54" y="39" text-anchor="middle" class="lbl">Spreadsheets</text>
+            <rect x="6" y="66" width="96" height="30" rx="7" class="box"/>
+            <text x="54" y="85" text-anchor="middle" class="lbl">Databases</text>
+            <rect x="6" y="112" width="96" height="30" rx="7" class="box"/>
+            <text x="54" y="131" text-anchor="middle" class="lbl">Legacy systems</text>
+            <rect x="6" y="158" width="96" height="30" rx="7" class="box"/>
+            <text x="54" y="177" text-anchor="middle" class="lbl">Documents</text>
+            <!-- pipeline core -->
+            <rect x="132" y="70" width="76" height="80" rx="10" class="core"/>
+            <text x="170" y="104" text-anchor="middle" class="lbl-core">Pipeline</text>
+            <text x="170" y="122" text-anchor="middle" class="lbl-core-sub">clean &middot; model</text>
+            <text x="170" y="135" text-anchor="middle" class="lbl-core-sub">automate</text>
+            <!-- outputs -->
+            <rect x="238" y="44" width="96" height="34" rx="8" class="box"/>
+            <text x="286" y="65" text-anchor="middle" class="lbl">AI assistant</text>
+            <rect x="238" y="100" width="96" height="34" rx="8" class="box"/>
+            <text x="286" y="121" text-anchor="middle" class="lbl">Dashboards</text>
+            <rect x="238" y="156" width="96" height="34" rx="8" class="box"/>
+            <text x="286" y="177" text-anchor="middle" class="lbl">Reports</text>
+            <!-- arrows in -->
+            <path d="M102 35 C120 35 118 96 131 100" class="flow-in" marker-end="url(#arwIn)"/>
+            <path d="M102 81 C118 81 120 104 131 106" class="flow-in" marker-end="url(#arwIn)"/>
+            <path d="M102 127 C118 127 120 118 131 114" class="flow-in" marker-end="url(#arwIn)"/>
+            <path d="M102 173 C120 173 118 124 131 120" class="flow-in" marker-end="url(#arwIn)"/>
+            <!-- arrows out -->
+            <path d="M208 96 C224 96 224 63 237 61" class="flow-out" marker-end="url(#arwOut)"/>
+            <path d="M208 110 C226 110 224 116 237 117" class="flow-out" marker-end="url(#arwOut)"/>
+            <path d="M208 124 C224 124 224 171 237 173" class="flow-out" marker-end="url(#arwOut)"/>
+            <text x="170" y="228" text-anchor="middle" class="cap-txt">runs on a schedule &middot; monitored &middot; documented</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITY STRIP -->
+  <div class="strip">
+    <div class="wrap">
+      <span class="chip"><b>+</b> Website design &amp; build</span>
+      <span class="chip"><b>+</b> Workflow &amp; spreadsheet automation</span>
+      <span class="chip"><b>+</b> AI chatbots &amp; assistants</span>
+      <span class="chip"><b>+</b> Data pipelines &amp; dashboards</span>
+      <span class="chip"><b>+</b> Tech consulting</span>
+      <span class="chip"><b>+</b> Enterprise &amp; government cloud</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What we build</span>
+        <h2>Everything you need to run a modern business</h2>
+        <p>Whether it&rsquo;s a website that brings in customers, a report someone rebuilds every Monday, or data trapped across three systems &mdash; we build the thing that handles it for good, and help you figure out what to build in the first place.</p>
+      </div>
+      <div class="svc-grid">
+
+        <article class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></div>
+          <h3>Website design &amp; build</h3>
+          <p>Modern, fast, mobile-friendly websites that make your business look the part and win customers.</p>
+          <div class="flow">
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10"/></svg><span>Design</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg><span>Build</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span>Go live</span></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+          <h3>Automation tools</h3>
+          <p>Custom tools that do the repetitive work end to end &mdash; reports, reconciliations, spreadsheets &mdash; on autopilot.</p>
+          <div class="flow">
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg><span>Manual task</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg><span>Automate</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Runs itself</span></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4v1a3 3 0 0 1 0 6 4 4 0 0 1-8 0 3 3 0 0 1 0-6V7a4 4 0 0 1 4-4Z"/><path d="M12 3v18"/></svg></div>
+          <h3>AI chatbots &amp; assistants</h3>
+          <p>Smart chatbots that answer questions from <em>your</em> documents, built right into the tools your team already uses.</p>
+          <div class="flow">
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Your docs</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg><span>Chatbot</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12c1 1 1 2 1 3h6c0-1 0-2 1-3a7 7 0 0 0-4-12z"/></svg><span>Instant answer</span></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+          <h3>Data engineering &amp; pipelines</h3>
+          <p>Reliable pipelines that pull from legacy and cloud systems, then clean and organize your data so it&rsquo;s ready to use.</p>
+          <div class="flow">
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/></svg><span>Raw sources</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg><span>Clean &amp; model</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><span>Ready data</span></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6" rx="1"/><rect x="12.5" y="7" width="3" height="10" rx="1"/><rect x="18" y="13" width="3" height="4" rx="1"/></svg></div>
+          <h3>Dashboards &amp; reporting</h3>
+          <p>Live dashboards that turn your data into decisions &mdash; the number you need, on screen before anyone asks.</p>
+          <div class="flow">
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3 8 4-16 3 8h6"/></svg><span>Live data</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="14" width="3" height="4"/></svg><span>Dashboard</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg><span>At a glance</span></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1z"/></svg></div>
+          <h3>Tech consulting</h3>
+          <p>Not sure what to build? We help you pick what&rsquo;s worth automating and which tools actually fit &mdash; in plain language, no jargon.</p>
+          <div class="flow">
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><span>Your goal</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1z"/></svg><span>Plan</span></div>
+            <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7a4 4 0 1 0-3.5 4L4 18.5 5.5 20l7.5-7.5A4 4 0 0 0 15 7z"/></svg><span>Right tools</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Selected work</span>
+        <h2>A sample of what we&rsquo;ve shipped</h2>
+        <p>Live sites you can click through, plus systems built for enterprise and public-sector teams (described without client names).</p>
+      </div>
+      <div class="work-grid">
+
+        <a class="case live" href="https://astonishing-kitten-1db7e3.netlify.app/" target="_blank" rel="noopener">
+          <span class="preview" aria-hidden="true">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="nel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C08AA0"/><stop offset="1" stop-color="#5E3B4D"/></linearGradient></defs>
+              <rect width="320" height="180" fill="url(#nel)"/>
+              <rect width="320" height="26" fill="#ffffff" opacity="0.14"/>
+              <circle cx="16" cy="13" r="3" fill="#ffffff" opacity="0.55"/><circle cx="27" cy="13" r="3" fill="#ffffff" opacity="0.4"/><circle cx="38" cy="13" r="3" fill="#ffffff" opacity="0.3"/>
+              <rect x="60" y="7" width="200" height="12" rx="6" fill="#ffffff" opacity="0.16"/>
+              <text x="70" y="16" font-family="Georgia, serif" font-size="8" fill="#ffffff" opacity="0.85">Live site</text>
+              <text x="160" y="107" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="60" fill="#ffffff" opacity="0.95">N</text>
+              <rect x="134" y="119" width="52" height="1.4" fill="#ffffff" opacity="0.6"/>
+              <text x="160" y="141" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#ffffff" opacity="0.82" letter-spacing="1">Bespoke tailoring &amp; bridal</text>
+            </svg>
+          </span>
+          <span class="tag"><span class="dot"></span>Live &middot; Website</span>
+          <h3>Neleena Dress Makers</h3>
+          <p>A polished website for a bespoke tailoring and bridal business &mdash; portfolio, brand story, and an order-request form, designed to feel as elegant as the garments it showcases.</p>
+          <span class="visit">Visit live site &nearr;</span>
+        </a>
+
+        <a class="case live" href="https://illinois-demographics.vercel.app/" target="_blank" rel="noopener">
+          <span class="preview" aria-hidden="true">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="ill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0C7E9A"/><stop offset="1" stop-color="#083E4E"/></linearGradient></defs>
+              <rect width="320" height="180" fill="url(#ill)"/>
+              <rect width="320" height="26" fill="#ffffff" opacity="0.14"/>
+              <circle cx="16" cy="13" r="3" fill="#ffffff" opacity="0.55"/><circle cx="27" cy="13" r="3" fill="#ffffff" opacity="0.4"/><circle cx="38" cy="13" r="3" fill="#ffffff" opacity="0.3"/>
+              <rect x="60" y="7" width="200" height="12" rx="6" fill="#ffffff" opacity="0.16"/>
+              <text x="70" y="16" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" opacity="0.85">Live site</text>
+              <g fill="#ffffff">
+                <rect x="72" y="96" width="20" height="44" opacity="0.9"/><rect x="102" y="78" width="20" height="62" opacity="0.75"/><rect x="132" y="108" width="20" height="32" opacity="0.6"/><rect x="162" y="66" width="20" height="74" opacity="0.85"/><rect x="192" y="90" width="20" height="50" opacity="0.65"/><rect x="222" y="102" width="20" height="38" opacity="0.5"/>
+              </g>
+              <line x1="68" y1="140" x2="250" y2="140" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+              <text x="160" y="162" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" opacity="0.85" letter-spacing="0.5">Demographics dashboard</text>
+            </svg>
+          </span>
+          <span class="tag"><span class="dot"></span>Live &middot; Data dashboard</span>
+          <h3>Illinois Demographics Explorer</h3>
+          <p>An interactive tool for exploring Illinois population and demographic data &mdash; the kind of dashboard that turns a raw public dataset into something anyone can click through and actually understand.</p>
+          <span class="visit">Visit live site &nearr;</span>
+        </a>
+
+        <article class="case">
+          <span class="tag">AI chatbot</span>
+          <h3>Company chatbot that answers staff questions instantly</h3>
+          <p>A custom AI chatbot that lets staff ask everyday questions in plain language and get instant answers pulled straight from the organization&rsquo;s own policies and documents &mdash; built right into the site they already use, so help is one click away instead of a search through folders or an email to a colleague.</p>
+          <div class="stack">custom chatbot · document Q&amp;A · website integration</div>
+        </article>
+
+        <article class="case">
+          <span class="tag">Automation</span>
+          <h3>CPA / accounting automation tool</h3>
+          <p>Replaced a recurring manual accounting process with a tool that handles the data prep and output automatically, cutting hours of repetitive spreadsheet work each cycle.</p>
+          <div class="stack">Python · Excel · scheduled runs</div>
+        </article>
+
+        <article class="case">
+          <span class="tag">Data engineering</span>
+          <h3>Legacy-to-cloud data pipeline</h3>
+          <p>A medallion pipeline pulling from a legacy line-of-business system into a governed cloud warehouse &mdash; bronze, silver, and gold layers feeding downstream analytics.</p>
+          <div class="stack">Azure · SQL · ETL · bronze/silver/gold</div>
+        </article>
+
+        <article class="case">
+          <span class="tag">Live data</span>
+          <h3>Real-time utility usage feed</h3>
+          <p>A live feed that surfaces near-real-time usage and reads from field devices, giving operations a current view instead of waiting on batch reports.</p>
+          <div class="stack">streaming ingest · scheduled sync · API</div>
+        </article>
+
+        <article class="case">
+          <span class="tag">Dashboards</span>
+          <h3>Operations &amp; on-call dashboards</h3>
+          <p>Uptime/downtime monitoring for network devices plus an on-call scheduling view &mdash; the state of the environment and who&rsquo;s responsible, at a glance.</p>
+          <div class="stack">monitoring · live dashboards · alerting</div>
+        </article>
+
+        <article class="case">
+          <span class="tag">Automation</span>
+          <h3>Background service for field operations</h3>
+          <p>A Windows service that automatically ingests and uploads field data on a schedule &mdash; no operator steps, with monitoring so failures get noticed early.</p>
+          <div class="stack">.NET · Windows service · scheduled upload</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How we work</span>
+        <h2>Small scope, real result, no lock-in</h2>
+        <p>A simple three-step engagement designed to prove value fast and hand you something you actually own.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>Scope the bottleneck</h3>
+          <p>A short call to find the highest-leverage thing to automate, what it&rsquo;s costing you today, and what a good outcome looks like. You leave with a clear plan and a fixed quote &mdash; free, no obligation.</p>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>Build &amp; iterate</h3>
+          <p>We build in short cycles with something to look at early, so you&rsquo;re never waiting months to see progress. You review, we adjust, we get it right against your real data.</p>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>Hand off &amp; support</h3>
+          <p>You get working, documented software that runs on its own &mdash; plus the source and a walkthrough so your team owns it. Ongoing support is available if you want it, never required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">About</span>
+        <h2 style="font-family:var(--display);font-size:clamp(24px,3vw,32px);margin-top:12px">Built by working data engineers</h2>
+      </div>
+      <div>
+        <p>We&rsquo;re Oya Data Labs &mdash; a small team of data engineers and builders led by Thimira. This is exactly what we do day to day: cloud data pipelines, automation, websites, and AI tools, including in security-conscious enterprise and government cloud environments.</p>
+        <p>That means you&rsquo;re not hiring someone learning on your project. You&rsquo;re working with people who do this in production, understand the messy reality of legacy systems and real deadlines, and care about handing over something maintainable &mdash; not a demo that falls over in a month.</p>
+        <p class="note">Oya Data Labs is growing. For larger builds &mdash; heavier email &amp; spreadsheet automation and dedicated dashboarding &mdash; we bring in trusted specialists so your project always has the right person on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <span class="eyebrow">Let&rsquo;s talk</span>
+        <h2>Tell us what&rsquo;s eating your team&rsquo;s time.</h2>
+        <p>Send a couple of sentences about the manual work or data headache you&rsquo;d like gone. We&rsquo;ll reply with whether it&rsquo;s a fit and a rough sense of scope &mdash; usually within a day.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:bandarathimira@gmail.com?subject=Automation%20project%20inquiry&amp;body=Hi%20Thimira%2C%0A%0AHere%27s%20the%20manual%20work%20or%20data%20problem%20I%27d%20like%20to%20automate%3A%0A%0A">Email us about a project</a>
+          <a class="btn btn-ghost" href="#services">What we build</a>
+        </div>
+        <div class="mailline">bandarathimira@gmail.com</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span class="brand">Oya Data Labs</span>
+    <span>Freelance data engineering &amp; automation &mdash; Python, cloud, AI, dashboards.</span>
+    <span>&copy; 2026 &middot; <a href="mailto:bandarathimira@gmail.com" style="color:var(--accent);text-decoration:none">bandarathimira@gmail.com</a></span>
+  </div>
+</footer>
+</body>
+</html>
