@@ -1,9 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { Reveal, TiltCard, SplitText, Icon } from './ui.jsx'
 import Preview from './Previews.jsx'
-import { SERVICES, WORK, CAPABILITIES, PROCESS, MAILTO, EMAIL } from './data.js'
+import { SERVICES, WORK, PROCESS, MAILTO, EMAIL } from './data.js'
+
+const CAP_CHIPS = [
+  'Enterprise & government-grade security',
+  'Cloud-native — Azure & AWS',
+  'RAG & LLM apps',
+  'ETL & medallion pipelines',
+  'Production-tested systems',
+]
 
 function Flow({ steps }) {
   return (
@@ -21,16 +29,35 @@ function Flow({ steps }) {
 function HeroVisual() {
   const box = { fill: 'var(--surface)', stroke: 'var(--hairline-strong)', strokeWidth: 1 }
   const lbl = { fill: 'var(--ink-soft)', fontFamily: 'var(--mono)', fontSize: 10 }
+  const rx = useSpring(useMotionValue(0), { stiffness: 110, damping: 13 })
+  const ry = useSpring(useMotionValue(0), { stiffness: 110, damping: 13 })
+  function onMove(e) {
+    const r = e.currentTarget.getBoundingClientRect()
+    const px = (e.clientX - r.left) / r.width
+    const py = (e.clientY - r.top) / r.height
+    ry.set((px - 0.5) * 18)
+    rx.set(-(py - 0.5) * 18)
+  }
+  function onLeave() { rx.set(0); ry.set(0) }
   return (
     <motion.div
-      className="card"
-      initial={{ opacity: 0, y: 24, rotateX: 8 }}
-      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      style={{ padding: 20, boxShadow: 'var(--shadow-lg)' }}
+      className="heroviz-card"
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      initial={{ opacity: 0, y: 28, rotateY: -16 }}
+      animate={{ opacity: 1, y: 0, rotateY: 0 }}
+      transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1100, transformStyle: 'preserve-3d' }}
     >
-      <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>How a build comes together</div>
-      <svg viewBox="0 0 340 236" style={{ width: '100%', height: 'auto', display: 'block' }}>
+      <span className="heroviz-glow" aria-hidden="true" />
+      <motion.div
+        className="heroviz-inner"
+        style={{ transformStyle: 'preserve-3d' }}
+        animate={{ y: [0, -7, 0] }}
+        transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
+      >
+      <div className="heroviz-label" style={{ transform: 'translateZ(24px)' }}>How a build comes together</div>
+      <svg viewBox="0 0 340 236" style={{ width: '100%', height: 'auto', display: 'block', transform: 'translateZ(44px)' }}>
         <defs>
           <marker id="aIn" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L7 4 L0 8 z" style={{ fill: 'var(--muted)' }} /></marker>
           <marker id="aOut" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L7 4 L0 8 z" style={{ fill: 'var(--accent)' }} /></marker>
@@ -51,19 +78,20 @@ function HeroVisual() {
             <text x="286" y={y + 21} textAnchor="middle" style={lbl}>{t}</text>
           </g>
         ))}
-        <g style={{ fill: 'none', stroke: 'var(--muted)', strokeWidth: 1.5 }}>
+        <g className="flow-line" style={{ fill: 'none', stroke: 'var(--muted)', strokeWidth: 1.5 }}>
           <path d="M100 33 C118 33 116 104 129 108" markerEnd="url(#aIn)" />
           <path d="M100 79 C116 79 118 112 129 114" markerEnd="url(#aIn)" />
           <path d="M100 125 C116 125 118 122 129 120" markerEnd="url(#aIn)" />
           <path d="M100 171 C118 171 116 128 129 124" markerEnd="url(#aIn)" />
         </g>
-        <g style={{ fill: 'none', stroke: 'var(--accent)', strokeWidth: 1.8 }}>
+        <g className="flow-line" style={{ fill: 'none', stroke: 'var(--accent)', strokeWidth: 1.8 }}>
           <path d="M208 100 C224 100 224 69 237 67" markerEnd="url(#aOut)" />
           <path d="M208 116 C226 116 224 122 237 123" markerEnd="url(#aOut)" />
           <path d="M208 132 C224 132 224 177 237 179" markerEnd="url(#aOut)" />
         </g>
         <text x="169" y="214" textAnchor="middle" style={{ fill: 'var(--muted)', fontFamily: 'var(--mono)', fontSize: 9.5 }}>runs on a schedule · monitored · documented</text>
       </svg>
+      </motion.div>
     </motion.div>
   )
 }
@@ -110,7 +138,7 @@ export default function Home() {
           <Reveal className="sec-head">
             <span className="eyebrow">What we do</span>
             <h2>Everything you need to run a modern business</h2>
-            <p>Whether it is a website that brings in customers, a report someone rebuilds every Monday, or data trapped across three systems — we build the thing that handles it for good.</p>
+            <p>Whether it is a website that brings in customers, a report someone rebuilds every Monday, or data trapped across three systems — we build the thing that handles it for good, backed by real production experience.</p>
           </Reveal>
           <div className="svc-grid">
             {SERVICES.map((s, i) => (
@@ -124,6 +152,10 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+          <Reveal className="cap-strip">
+            <span className="lead">Backed by production experience across startups, industry, and large organizations</span>
+            {CAP_CHIPS.map((c) => <span key={c} className="pill">{c}</span>)}
+          </Reveal>
         </div>
       </section>
 
@@ -157,23 +189,6 @@ export default function Home() {
                 </Reveal>
               )
             })}
-          </div>
-
-          {/* CAPABILITIES */}
-          <Reveal style={{ marginTop: 64 }} className="sec-head">
-            <span className="eyebrow">What we can do</span>
-            <h2>Capabilities we bring to the table</h2>
-            <p>The range of work our team is able to build — honed across industry, startups, and large organizations.</p>
-          </Reveal>
-          <div className="cap-grid">
-            {CAPABILITIES.map((c, i) => (
-              <Reveal key={c.title} delay={(i % 3) * 0.06}>
-                <TiltCard className="cap" max={4}>
-                  <div className="ic"><Icon name={c.icon} /></div>
-                  <div><h4>{c.title}</h4><p>{c.desc}</p></div>
-                </TiltCard>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
