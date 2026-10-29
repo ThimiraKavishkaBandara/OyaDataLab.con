@@ -1,20 +1,30 @@
 # Oya Data Labs — website
 
-Marketing site for a freelance data engineering & automation business.
+The marketing site for Oya Data Labs (oyadatalabs.com), built with **Vite + React**.
 
-A single, self-contained static page: `index.html` (all CSS, SVG, and content
-inlined — no build step, no dependencies). The contact button opens the
-visitor's email app; there is no backend.
+## Stack
+- React 18 + React Router (Home + About)
+- Framer Motion (scroll reveals, text + counter animations, tilt cards)
+- Animated canvas/particle + aurora background, light/dark theme toggle
+- No backend — the contact button opens the visitor's email app
+
+## Develop
+```bash
+npm install
+npm run dev
+```
+
+## Build
+```bash
+npm run build      # outputs to dist/
+npm run preview    # preview the production build
+```
 
 ## Deploy (Vercel)
+Vercel auto-builds from `vercel.json` (framework: Vite, build: `vite build`, output: `dist/`).
+Every push to `main` redeploys. If the project was previously set up as a static site,
+set **Settings → Build & Deployment → Framework Preset = Vite** once.
 
-1. Push this repo to GitHub.
-2. In Vercel, **Add New → Project → Import** this GitHub repo.
-3. Framework preset: **Other**. Leave Build & Output settings empty.
-4. **Deploy.** Every future `git push` to the main branch redeploys automatically.
-
-## Editing
-
-Edit `index.html` and push. To change the business name, find-and-replace
-"Oya Data Labs". The contact email is set in the two `mailto:` links and the
-footer.
+## Edit the content
+Most copy lives in `src/data.js` (services, work, capabilities, stats, process).
+To change the business name, search for "Oya Data Labs". Contact email is in `src/data.js`.
