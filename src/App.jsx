@@ -5,19 +5,32 @@ import { EMAIL } from './data.js'
 import Home from './Home.jsx'
 import About from './About.jsx'
 
-function Mark() {
+function BrandMark() {
   return (
-    <svg className="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <svg className="mark" viewBox="0 0 50 34" fill="none" aria-hidden="true">
       <defs>
-        <linearGradient id="m" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#0C7C94" /><stop offset="1" stopColor="#2FA8BE" />
+        <linearGradient id="oyaGrad" x1="0" y1="0" x2="0" y2="34" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#35D7C3" />
+          <stop offset="0.5" stopColor="#45A6F0" />
+          <stop offset="1" stopColor="#8A80F0" />
         </linearGradient>
       </defs>
-      <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#m)" />
-      <path d="M8 12h16M8 16.5h11M8 21h6" stroke="#fff" strokeWidth="2.3" strokeLinecap="round" opacity="0.95" />
-      <circle cx="23" cy="20" r="2.6" fill="#fff" />
+      <g stroke="url(#oyaGrad)" strokeWidth="3.6" strokeLinecap="round" fill="none">
+        <path d="M3 8 C9 3 15 3 21 8 S33 13 35 8" />
+        <path d="M3 17 C9 12 15 12 21 17 S33 22 35 17" />
+        <path d="M3 26 C9 21 15 21 21 26 S33 31 35 26" />
+      </g>
+      <g fill="url(#oyaGrad)">
+        <circle cx="40.5" cy="8" r="2.3" /><circle cx="46" cy="8" r="1.4" />
+        <circle cx="40.5" cy="17" r="2.3" /><circle cx="46" cy="17" r="1.4" />
+        <circle cx="40.5" cy="26" r="2.3" /><circle cx="46" cy="26" r="1.4" />
+      </g>
     </svg>
   )
+}
+
+function Wordmark() {
+  return <span className="brand-word">oya<em>Data&nbsp;Labs</em></span>
 }
 
 function ScrollManager() {
@@ -39,7 +52,7 @@ function Nav() {
   return (
     <header className="nav">
       <div className="wrap nav-in">
-        <Link to="/" className="brand" onClick={close}><Mark /> Oya Data Labs</Link>
+        <Link to="/" className="brand" onClick={close}><BrandMark /><Wordmark /></Link>
         <nav className="nav-links" aria-label="Primary">
           <Link to="/#services">Services</Link>
           <Link to="/#work">Work</Link>
@@ -59,7 +72,7 @@ function Footer() {
   return (
     <footer className="site">
       <div className="wrap">
-        <span className="brand">Oya Data Labs</span>
+        <span className="brand"><BrandMark /><Wordmark /></span>
         <span>
           <Link to="/about">About</Link> &nbsp;·&nbsp; <Link to="/#services">Services</Link> &nbsp;·&nbsp; <Link to="/#contact">Contact</Link>
         </span>
